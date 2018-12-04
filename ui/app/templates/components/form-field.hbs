@@ -88,6 +88,12 @@
     inputValue=(get model valuePath)
     onChange=(action (action "setAndBroadcast" valuePath))
   }}
+{{else if (eq attr.options.sensitive true)}}
+  {{masked-input
+    isPassword=true
+    value=(or (get model valuePath) attr.options.defaultValue)
+    displayOnly=false
+    allowCopy=true}}
 {{else if (or (eq attr.type 'number') (eq attr.type 'string'))}}
   <div class="control">
     {{#if (eq attr.options.editType 'textarea')}}
